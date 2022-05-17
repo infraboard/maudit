@@ -17,14 +17,12 @@ enum Level {
 }
 
 enum Type {
-    // 全局配置, 所有服务可以读取
+    // 记录用户的操作记录
     OPERATE = 0;
-    // 组内配置, 组里面的服务可以读取
-	STATUS = 1;
 }
 
 enum ContentType {
-    // Body采用probuf编码, 默认
+    // 采用probuf编码, 默认
     PROTOBUF = 0;
     // 采用Json编码
     JSON = 1;

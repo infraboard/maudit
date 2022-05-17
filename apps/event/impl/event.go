@@ -16,7 +16,7 @@ func (s *service) SaveEvent(ctx context.Context, req *event.SaveEventRequest) (*
 
 	fmt.Printf("%+v\n", ins)
 
-	if _, err := s.col.InsertMany(context.TODO(), ins); err != nil {
+	if _, err := s.col.InsertMany(ctx, ins); err != nil {
 		return nil, exception.NewInternalServerError("inserted event(%s) document error, %s",
 			req.Ids(), err)
 	}
@@ -28,7 +28,7 @@ func (s *service) SaveEvent(ctx context.Context, req *event.SaveEventRequest) (*
 
 func (s *service) QueryEvent(ctx context.Context, req *event.QueryEventRequest) (*event.OperateEventSet, error) {
 	r := newQueryEventRequest(req)
-	resp, err := s.col.Find(context.TODO(), r.FindFilter(), r.FindOptions())
+	resp, err := s.col.Find(ctx, r.FindFilter(), r.FindOptions())
 
 	if err != nil {
 		return nil, exception.NewInternalServerError("find event error, error is %s", err)
@@ -36,7 +36,7 @@ func (s *service) QueryEvent(ctx context.Context, req *event.QueryEventRequest) 
 
 	set := event.NewOperateEventSet()
 	// 循环
-	for resp.Next(context.TODO()) {
+	for resp.Next(ctx) {
 		d := event.NewDefaultOperateEvent()
 		if err := resp.Decode(d); err != nil {
 			return nil, exception.NewInternalServerError("decode event error, error is %s", err)
@@ -46,7 +46,7 @@ func (s *service) QueryEvent(ctx context.Context, req *event.QueryEventRequest) 
 	}
 
 	// count
-	count, err := s.col.CountDocuments(context.TODO(), r.FindFilter())
+	count, err := s.col.CountDocuments(ctx, r.FindFilter())
 	if err != nil {
 		return nil, exception.NewInternalServerError("get event count error, error is %s", err)
 	}
