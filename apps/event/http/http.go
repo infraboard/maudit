@@ -1,10 +1,10 @@
 package http
 
 import (
-	"github.com/infraboard/mcube/app"
 	"github.com/infraboard/mcube/http/router"
-	"github.com/infraboard/mcube/logger"
-	"github.com/infraboard/mcube/logger/zap"
+	"github.com/infraboard/mcube/ioc"
+	"github.com/infraboard/mcube/ioc/config/logger"
+	"github.com/rs/zerolog"
 
 	"github.com/infraboard/maudit/apps/event"
 )
@@ -15,12 +15,14 @@ var (
 
 type handler struct {
 	service event.ServiceServer
-	log     logger.Logger
+	log     *zerolog.Logger
+
+	ioc.ObjectImpl
 }
 
 func (h *handler) Config() error {
-	h.log = zap.L().Named(h.Name())
-	h.service = app.GetGrpcApp(event.AppName).(event.ServiceServer)
+	h.log = logger.Sub(h.Name())
+	h.service = ioc.Controller().Get(event.AppName).(event.ServiceServer)
 	return nil
 }
 
@@ -35,5 +37,5 @@ func (h *handler) Registry(r router.SubRouter) {
 }
 
 func init() {
-	app.RegistryHttpApp(h)
+	ioc.Api().Registry(h)
 }

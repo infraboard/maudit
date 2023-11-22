@@ -8,7 +8,7 @@ import (
 	"github.com/infraboard/mcube/exception"
 )
 
-func (s *service) SaveEvent(ctx context.Context, req *event.SaveEventRequest) (*event.SaveReponse, error) {
+func (s *impl) SaveEvent(ctx context.Context, req *event.SaveEventRequest) (*event.SaveReponse, error) {
 	ins, err := req.ParseEvent()
 	if err != nil {
 		return nil, err
@@ -26,7 +26,7 @@ func (s *service) SaveEvent(ctx context.Context, req *event.SaveEventRequest) (*
 	return resp, nil
 }
 
-func (s *service) QueryEvent(ctx context.Context, req *event.QueryEventRequest) (*event.OperateEventSet, error) {
+func (s *impl) QueryEvent(ctx context.Context, req *event.QueryEventRequest) (*event.OperateEventSet, error) {
 	r := newQueryEventRequest(req)
 	resp, err := s.col.Find(ctx, r.FindFilter(), r.FindOptions())
 

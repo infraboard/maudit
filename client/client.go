@@ -5,8 +5,6 @@ import (
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
 	"google.golang.org/grpc"
-
-	"github.com/infraboard/maudit/apps/book"
 )
 
 var (
@@ -43,9 +41,4 @@ func NewClient(conf *kc.Config) (*ClientSet, error) {
 type ClientSet struct {
 	conn *grpc.ClientConn
 	log  logger.Logger
-}
-
-// Book服务的SDK
-func (c *ClientSet) Book() book.ServiceClient {
-	return book.NewServiceClient(c.conn)
 }
