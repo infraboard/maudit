@@ -13,6 +13,7 @@
 
 cover.out
 coverage.txt
+*.log
 
 etc/maudit.toml
 etc/maudit.env

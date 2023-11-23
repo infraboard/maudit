@@ -6,6 +6,8 @@ import (
 )
 
 func (i *impl) ConsumerEvent() {
+	i.log.Debug().Msg("start consume event...")
+
 	for {
 		m, err := i.kr.ReadMessage(context.Background())
 		if err != nil {

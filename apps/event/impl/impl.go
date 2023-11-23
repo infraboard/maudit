@@ -36,10 +36,10 @@ type impl struct {
 	Topics  []string `toml:"topics" json:"topics" yaml:"topics" env:"EVNET_TOPICS" envSeparator:","`
 }
 
-func (i *impl) Config() error {
-	i.col = ioc_mongo.DB().Collection(i.Name())
-	i.kr = kafka.ConsumerGroup(i.GroupId, i.Topics)
+func (i *impl) Init() error {
+	i.log = logger.Sub(i.Name())
 
+	i.col = ioc_mongo.DB().Collection(i.Name())
 	indexs := []mongo.IndexModel{
 		{
 			Keys: bson.D{{Key: "save_at", Value: -1}},
@@ -49,8 +49,15 @@ func (i *impl) Config() error {
 	if err != nil {
 		return err
 	}
-	i.log = logger.Sub(i.Name())
+
+	i.kr = kafka.ConsumerGroup(i.GroupId, i.Topics)
+	go i.ConsumerEvent()
 	return nil
+}
+
+// 对象的销毁
+func (s *impl) Close(ctx context.Context) error {
+	return s.kr.Close()
 }
 
 func (s *impl) Name() string {
