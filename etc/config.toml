@@ -20,6 +20,13 @@ client_secret = "xx"
 endpoints = ["127.0.0.1:27017"]
 database = "maudit"
 
+[kafka]
+brokers = ["127.0.0.1:9092"]
+
+[event]
+group_id = "maudit.event.consumer"
+topics = ["audit_event"]
+
 [log]
 level = "debug"
 

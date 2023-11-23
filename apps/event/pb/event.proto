@@ -157,6 +157,8 @@ message SaveEventRequest {
 
 // QueryEventRequest 查询Book请求
 message QueryEventRequest {
+    // 事件分页查询
     infraboard.mcube.page.PageRequest page = 1;
+    // 根据事件名称查询
     string name = 2;
 }

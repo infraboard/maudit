@@ -19,7 +19,7 @@ import (
 var (
 	// Service 服务实例
 	svr = &impl{
-		GroupId: "maudit.event.reader",
+		GroupId: "maudit.event.consumer",
 		Topics:  []string{"maudit.event"},
 	}
 )
@@ -50,6 +50,7 @@ func (i *impl) Init() error {
 		return err
 	}
 
+	i.log.Debug().Msgf("group_id: %s, topics: %s", i.GroupId, i.Topics)
 	i.kr = kafka.ConsumerGroup(i.GroupId, i.Topics)
 	go i.ConsumerEvent()
 	return nil
