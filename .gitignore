@@ -16,6 +16,8 @@ coverage.txt
 
 etc/maudit.toml
 etc/maudit.env
+etc/config.toml
+etc/config.env
 etc/unit-test.env
 etc/ssl
 maudit

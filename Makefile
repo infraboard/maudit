@@ -43,14 +43,13 @@ init: dep ## Inital project
 	@go run main.go init
 
 run: install dep ## Run Server
-	@go run main.go service start
+	@go run main.go start
 
 clean: ## Remove previous build
 	@go clean .
 	@rm -f dist/${PROJECT_NAME}
 
 install: ## Install depence go package
-	@go install github.com/infraboard/mcube/cmd/mcube@latest
 	@go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	@go install github.com/favadi/protoc-go-inject-tag@latest
