@@ -7,7 +7,7 @@
 package event
 
 import (
-	request "github.com/infraboard/mcube/http/request"
+	request "github.com/infraboard/mcube/v2/http/request"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"

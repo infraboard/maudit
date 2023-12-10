@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/infraboard/maudit/apps/event"
-	"github.com/infraboard/mcube/exception"
+	"github.com/infraboard/mcube/v2/exception"
 )
 
 func (s *impl) SaveEvent(ctx context.Context, req *event.SaveEventRequest) (*event.SaveReponse, error) {

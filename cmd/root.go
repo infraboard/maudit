@@ -6,9 +6,8 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/infraboard/maudit/cmd/start"
-	"github.com/infraboard/mcube/ioc"
-	"github.com/infraboard/mcube/ioc/config/application"
-	"github.com/infraboard/mcube/validator"
+	"github.com/infraboard/mcube/v2/ioc"
+	"github.com/infraboard/mcube/v2/ioc/config/application"
 )
 
 var (
@@ -35,9 +34,6 @@ var RootCmd = &cobra.Command{
 }
 
 func initail() {
-	err := validator.Init()
-	cobra.CheckErr(err)
-
 	req := ioc.NewLoadConfigRequest()
 	switch confType {
 	case "file":
@@ -47,7 +43,7 @@ func initail() {
 		req.ConfigEnv.Enabled = true
 	}
 
-	err = ioc.ConfigIocObject(req)
+	err := ioc.ConfigIocObject(req)
 	cobra.CheckErr(err)
 }
 

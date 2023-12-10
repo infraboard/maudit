@@ -1,9 +1,9 @@
 package http
 
 import (
-	"github.com/infraboard/mcube/http/router"
-	"github.com/infraboard/mcube/ioc"
-	"github.com/infraboard/mcube/ioc/config/logger"
+	"github.com/infraboard/mcube/v2/http/router"
+	"github.com/infraboard/mcube/v2/ioc"
+	"github.com/infraboard/mcube/v2/ioc/config/logger"
 	"github.com/rs/zerolog"
 
 	"github.com/infraboard/maudit/apps/event"

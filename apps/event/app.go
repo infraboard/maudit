@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	request "github.com/infraboard/mcube/http/request"
+	request "github.com/infraboard/mcube/v2/http/request"
 	"github.com/rs/xid"
 	"google.golang.org/protobuf/proto"
 	anypb "google.golang.org/protobuf/types/known/anypb"
