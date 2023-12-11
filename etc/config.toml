@@ -13,8 +13,8 @@ port = 18090
 
 [mcenter]
 address = "127.0.0.1:18010"
-client_id = "xx"
-client_secret = "xx"
+client_id = "ouR6NswKwLNVkNoTeY8lOzxN"
+client_secret = "q9Nf9VhqMfwg57Y8zomuWYzCyLh8dXjK"
 
 [mongodb]
 endpoints = ["127.0.0.1:27017"]
