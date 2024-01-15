@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/infraboard/mcube/v2/ioc"
-	"github.com/infraboard/mcube/v2/ioc/config/logger"
 	"github.com/rs/zerolog"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,6 +11,7 @@ import (
 
 	"github.com/infraboard/maudit/apps/event"
 	"github.com/infraboard/mcube/v2/ioc/config/kafka"
+	"github.com/infraboard/mcube/v2/ioc/config/log"
 	ioc_mongo "github.com/infraboard/mcube/v2/ioc/config/mongo"
 	go_kafka "github.com/segmentio/kafka-go"
 )
@@ -37,7 +37,7 @@ type impl struct {
 }
 
 func (i *impl) Init() error {
-	i.log = logger.Sub(i.Name())
+	i.log = log.Sub(i.Name())
 
 	i.col = ioc_mongo.DB().Collection(i.Name())
 	indexs := []mongo.IndexModel{

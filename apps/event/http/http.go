@@ -3,7 +3,7 @@ package http
 import (
 	"github.com/infraboard/mcube/v2/http/router"
 	"github.com/infraboard/mcube/v2/ioc"
-	"github.com/infraboard/mcube/v2/ioc/config/logger"
+	"github.com/infraboard/mcube/v2/ioc/config/log"
 	"github.com/rs/zerolog"
 
 	"github.com/infraboard/maudit/apps/event"
@@ -21,7 +21,7 @@ type handler struct {
 }
 
 func (h *handler) Config() error {
-	h.log = logger.Sub(h.Name())
+	h.log = log.Sub(h.Name())
 	h.service = ioc.Controller().Get(event.AppName).(event.ServiceServer)
 	return nil
 }
